@@ -42,14 +42,14 @@ export default class Input extends Component {
 
 	handleOnChange = (e) => {
 		const newValue = e.target.value;
-		if (this.finalDebounceMS) {
-			clearTimeout(this.state.timeoutID);
-			if (newValue !== this.props.value) {
-				this.setState({ timeoutID: setTimeout(() => this.props.onChange(newValue), this.finalDebounceMS) });
-			}
-		} else if (newValue !== this.props.value) {
-			this.props.onChange(newValue);
-		}
+		// if (this.finalDebounceMS) {
+		// 	clearTimeout(this.state.timeoutID);
+		// 	if (newValue !== this.props.value) {
+		// 		this.setState({ timeoutID: setTimeout(() => this.props.onChange(newValue), this.finalDebounceMS) });
+		// 	}
+		// } else if (newValue !== this.props.value) {
+		// 	this.props.onChange(newValue);
+		// }
 		this.setState({ value: newValue });
 	};
 
