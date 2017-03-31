@@ -619,13 +619,17 @@ babel-plugin-check-es2015-constants@^6.22.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-module-resolver@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-module-resolver/-/babel-plugin-module-resolver-2.5.0.tgz#a1204b4aeada066e8afb9b9f9c43e238d73d41bb"
+babel-plugin-module-resolver@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-module-resolver/-/babel-plugin-module-resolver-2.7.0.tgz#9c1cb2fcf2a1bdb45e91c6c985b96311123797f9"
   dependencies:
     find-babel-config "^1.0.1"
     glob "^7.1.1"
     resolve "^1.2.0"
+
+babel-plugin-rewire@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-rewire/-/babel-plugin-rewire-1.0.0.tgz#398d4dc7a01d6c682e221b197398c370731b3dd3"
 
 babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
@@ -2641,14 +2645,14 @@ es-to-primitive@^1.1.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.1"
 
-es5-ext@^0.10.13, es5-ext@^0.10.7, es5-ext@^0.10.8, es5-ext@^0.10.9, es5-ext@~0.10.11, es5-ext@~0.10.2, es5-ext@~0.10.7:
+es5-ext@^0.10.13, es5-ext@^0.10.8, es5-ext@^0.10.9, es5-ext@~0.10.2, es5-ext@~0.10.7:
   version "0.10.13"
   resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.13.tgz#a390ab717bde1ce3b4cbaeabe23ca8fbddcb06f6"
   dependencies:
     es6-iterator "2"
     es6-symbol "~3.1"
 
-es5-ext@~0.10.14:
+es5-ext@^0.10.7, es5-ext@~0.10.11, es5-ext@~0.10.14:
   version "0.10.15"
   resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.15.tgz#c330a5934c1ee21284a7c081a86e5fd937c91ea6"
   dependencies:
@@ -7037,6 +7041,10 @@ restore-cursor@^1.0.1:
 retry@^0.10.0, retry@~0.10.0:
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/retry/-/retry-0.10.1.tgz#e76388d217992c252750241d3d3956fed98d8ff4"
+
+rewire@^2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/rewire/-/rewire-2.5.2.tgz#6427de7b7feefa7d36401507eb64a5385bc58dc7"
 
 right-align@^0.1.1:
   version "0.1.3"

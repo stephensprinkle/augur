@@ -2,18 +2,17 @@ import { describe, it, before } from 'mocha';
 import { assert } from 'chai';
 
 import sinon from 'sinon';
-import proxyquire from 'proxyquire';
 
 import { MY_POSITIONS, MY_MARKETS, MY_REPORTS } from 'modules/app/constants/views';
 
 import { formatNumber, formatEther, formatRep } from 'utils/format-number';
 
-describe('modules/portfolio/selectors/nav-items', () => {
-  proxyquire.noPreserveCache().noCallThru();
+import portfolioNavItems, { selectPortfolioNavItems } from 'modules/portfolio/selectors/portfolio-nav-items';
 
+describe('modules/portfolio/selectors/nav-items', () => {
   let actual;
 
-  const stubbedSelectors = {
+  const mockState = {
     links: {
       myPositionsLink: {
         label: 'test',
@@ -69,15 +68,10 @@ describe('modules/portfolio/selectors/nav-items', () => {
     }
   ));
 
-  const stubbedLinks = sinon.stub(selectors, 'selectLinks', () => stubbedSelectors.links);
-
-  const proxiedSelector = proxyquire('../../../src/modules/portfolio/selectors/portfolio-nav-items', {
-    '../../my-positions/selectors/my-positions-summary': stubbedMyPositionsSummary,
-    '../../my-markets/selectors/my-markets-summary': stubbedMyMarketsSummary,
-    '../../my-reports/selectors/my-reports-summary': stubbedMyReportsSummary,
-    '../../link/selectors/links': stubbedLinks,
-    '../../../selectors': stubbedSelectors
-  });
+  // Apply the 'rewires' to the default export of the module
+  portfolioNavItems.__Rewire__('selectMyPositionsSummary', stubbedMyPositionsSummary);
+  portfolioNavItems.__Rewire__('selectMyMarketsSummary', stubbedMyMarketsSummary);
+  portfolioNavItems.__Rewire__('selectMyReportsSummary', stubbedMyReportsSummary);
 
   const expected = [
     {
@@ -137,7 +131,7 @@ describe('modules/portfolio/selectors/nav-items', () => {
   ];
 
   before(() => {
-    actual = proxiedSelector.default();
+    actual = selectPortfolioNavItems.resultFunc({ ...mockState.links }); // resultFunc is the transform function of createSelector
   });
 
   it(`should call 'selectMyPositionsSummary' once`, () => {
@@ -153,6 +147,6 @@ describe('modules/portfolio/selectors/nav-items', () => {
   });
 
   it('should return the expected array', () => {
-    assert.deepEqual(expected, actual, `Didn't return the expected array`);
+    assert.deepEqual(actual, expected, `Didn't return the expected array`);
   });
 });
