@@ -29,8 +29,9 @@ console.log(`
 *******************************************
 `);
 
+debugger;
+
 store.dispatch(updateURL(window.location.pathname + window.location.search));
-store.dispatch(initAugur());
 
 const appElement = document.getElementById('app');
 
@@ -47,6 +48,10 @@ function render(appElement, selectors) {
 // store.dispatch(MarketsActions.listenToMarkets());
 
 store.subscribe(handleRender);
+
+window.onload = () => {
+  store.dispatch(initAugur())
+};
 
 window.onpopstate = (e) => {
   store.dispatch(updateURL(window.location.pathname + window.location.search));
