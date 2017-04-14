@@ -16,7 +16,7 @@ export const setLoginAccount = autoLogin => (dispatch, getState) => {
   } else if (localStorageRef && localStorageRef.getItem && localStorageRef.getItem('account')) {
     const persistentAccount = JSON.parse(localStorageRef.getItem('account'));
     console.log('using persistent account:', persistentAccount);
-    augur.accounts.setAccountObject(persistentAccount);
+    augur.accounts.setActiveAccount(persistentAccount);
     dispatch(loadAccountData(persistentAccount));
 
   // 3. If autoLogin=true, use an unlocked local Ethereum node (if present)
