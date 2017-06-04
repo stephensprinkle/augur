@@ -63,3 +63,30 @@ to { height: auto; }
 .keyframes(collapseElementHeight, {
 to { height: 0; }
 });
+
+.flash-green {
+  animation-duration: @animation-speed-very-slow;
+  animation-name: flashGreen;
+}
+
+.flash-red {
+  animation-duration: @animation-speed-very-slow;
+  animation-name: flashRed;
+}
+.keyframes(flashGreen, {
+from {
+color: @color-green-muted;
+}
+to {
+color: inherit;
+}
+});
+
+.keyframes(flashRed, {
+from {
+color: @color-red-muted;
+}
+to {
+color: inherit;
+}
+});
