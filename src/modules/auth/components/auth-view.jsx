@@ -8,6 +8,7 @@ import AirbitzLogoIcon from 'modules/common/components/airbitz-logo-icon';
 import ComponentNav from 'modules/common/components/component-nav';
 
 import { AUTH_SIGNUP, AUTH_LOGIN, AUTH_IMPORT } from 'modules/app/constants/views';
+import { AUTH_NAV_ITEMS } from 'modules/auth/constants/auth-nav-items';
 
 export default class AuthView extends Component {
   static propTypes = {
@@ -63,7 +64,7 @@ export default class AuthView extends Component {
         <article className="auth-methods">
           <ComponentNav
             fullWidth
-            navItems={p.authNavItems}
+            navItems={AUTH_NAV_ITEMS}
             selectedNav={s.selectedNav}
             updateSelectedNav={this.updateSelectedNav}
           />

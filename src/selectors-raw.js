@@ -30,7 +30,6 @@ import { MARKET_USER_DATA_NAV_ITEMS } from 'modules/market/constants/market-user
 import scalarShareDenomination from 'modules/market/selectors/scalar-share-denomination';
 import { OUTCOME_TRADE_NAV_ITEMS } from 'modules/outcomes/constants/outcome-trade-nav-items';
 import authAirbitz from 'modules/auth/selectors/auth-airbitz';
-import authNavItems from 'modules/auth/selectors/auth-nav-items';
 import authLogin from 'modules/auth/selectors/auth-login';
 import authSignup from 'modules/auth/selectors/auth-signup';
 import authImport from 'modules/auth/selectors/auth-import';
@@ -72,7 +71,6 @@ const selectors = {
   scalarShareDenomination,
   outcomeTradeNavItems: () => OUTCOME_TRADE_NAV_ITEMS,
   authAirbitz,
-  authNavItems,
   authLogin,
   authSignup,
   authImport,

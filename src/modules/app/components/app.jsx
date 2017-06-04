@@ -18,6 +18,17 @@ import getValue from 'utils/get-value';
 import debounce from 'utils/debounce';
 
 export default class App extends Component {
+  // static propTypes = {
+  //   url: PropTypes.string.isRequired,
+  //   activeView: PropTypes.string.isRequired,
+  //   marketsHeader: PropTypes.object.isRequired,
+  //   portfolio: PropTypes.object.isRequired,
+  //   links: PropTypes.objects.isRequired,
+  //   notifications: PropTypes.object.isRequired
+  //   tags: PropTypes.array.isRequired
+  // }
+
+
   constructor(props) {
     super(props);
 
@@ -50,6 +61,8 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    console.log('props -- ', this.props);
+
     window.addEventListener('scroll', this.handleWindowScroll);
     window.addEventListener('resize', this.handleWindowResize);
 
@@ -147,21 +160,19 @@ export default class App extends Component {
     const p = this.props;
     const s = this.state;
 
+    const isLogged = getValue(p, 'loginAccount.address');
+
     const navProps = {
-      logged: getValue(p, 'loginAccount.address'),
+      logged: isLogged,
       isSideBarAllowed: s.isSideBarAllowed,
       isSideBarCollapsed: s.isSideBarCollapsed,
       isSideBarPersistent: s.isSideBarPersistent,
       toggleSideBar: () => { this.toggleSideBar(); },
       activeView: p.activeView,
-      positionsSummary: p.positionsSummary,
-      transactionsTotals: p.transactionsTotals,
-      isTransactionsWorking: p.isTransactionsWorking,
       marketsInfo: p.marketsHeader,
       portfolioTotals: getValue(p, 'portfolio.totals'),
       numFavorites: getValue(p, 'marketsHeader.numFavorites'),
       numPendingReports: getValue(p, 'marketsHeader.numPendingReports'),
-      numTransactionsWorking: getValue(p, 'transactionsTotals.numWorking'),
       marketsLink: getValue(p, 'links.marketsLink'),
       allMarketsLink: getValue(p, 'links.allMarketsLink'),
       favoritesLink: getValue(p, 'links.favoritesLink'),
@@ -201,11 +212,11 @@ export default class App extends Component {
               {...navProps}
               updateHeaderHeight={this.updateHeaderHeight}
             />
-            <div className={classnames('sub-header', (!p.loginAccount || !p.loginAccount.address) && 'logged-out')} >
+            <div className={classnames('sub-header', { 'logged-out': !isLogged })} >
               {s.isSideBarAllowed && !s.isSideBarCollapsed &&
                 <div className="core-stats-bumper" />
               }
-              {p.loginAccount && p.loginAccount.address &&
+              {isLogged &&
                 <CoreStats
                   activeView={p.activeView}
                   coreStats={p.coreStats}
@@ -225,8 +236,8 @@ export default class App extends Component {
                 {s.isSideBarAllowed && !s.isSideBarCollapsed &&
                   <div className="core-stats-bumper" />
                 }
-                <div className={classnames('sub-header', (!p.loginAccount || !p.loginAccount.address) && 'logged-out')} >
-                  {p.loginAccount && p.loginAccount.address &&
+                <div className={classnames('sub-header', { 'logged-out': !isLogged })} >
+                  {isLogged &&
                     <CoreStats
                       activeView={p.activeView}
                       coreStats={p.coreStats}
@@ -266,7 +277,3 @@ export default class App extends Component {
     );
   }
 }
-
-App.propTypes = {
-  url: PropTypes.string
-};
