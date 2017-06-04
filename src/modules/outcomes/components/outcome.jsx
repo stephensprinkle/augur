@@ -7,12 +7,11 @@ import OutcomeTrade from 'modules/outcomes/components/outcome-trade';
 
 import { BID, ASK } from 'modules/transactions/constants/types';
 import { PRICE, SHARE } from 'modules/order-book/constants/order-book-value-types';
+import { OUTCOME_VALUE_INCREASED, OUTCOME_VALUE_DECREASED } from 'modules/outcomes/constants/outcome-value-change';
 import { SCALAR } from 'modules/markets/constants/market-types';
 
 import getValue from 'utils/get-value';
 import setShareDenomination from 'utils/set-share-denomination';
-
-import { OUTCOME_VALUE_INCREASED, OUTCOME_VALUE_DECREASED } from 'modules/outcomes/constants/outcome-value-change';
 
 export default class Outcome extends Component {
   static propTypes = {
