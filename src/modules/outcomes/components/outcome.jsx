@@ -130,30 +130,30 @@ export default class Outcome extends Component {
             </span>
           }
           <span className="outcome-best-orders outcome-best-bid">
-              <button
-                className="unstyled"
-                onClick={() => {
-              p.updateTradeFromSelectedOrder(p.outcome.id, 0, BID, SHARE);
-            }}
-          >
-            <span className="outcome-best-container">
-              <ValueDenomination className="emphasized" formatted={topBidPrice} />
-              <ValueDenomination formatted={topBidShares} />
-            </span>
-          </button>
+            <button
+              className="unstyled"
+              onClick={() => {
+                p.updateTradeFromSelectedOrder(p.outcome.id, 0, BID, SHARE);
+              }}
+            >
+              <span className="outcome-best-container">
+                <ValueDenomination className="emphasized" formatted={topBidPrice} />
+                <ValueDenomination formatted={topBidShares} />
+              </span>
+            </button>
           </span>
           <span className="outcome-best-orders outcome-best-ask">
             <button
               className="unstyled"
               onClick={() => {
                 p.updateTradeFromSelectedOrder(p.outcome.id, 0, ASK, SHARE);
-            }}
-          >
-            <span className="outcome-best-container">
-              <ValueDenomination className="emphasized" formatted={topAskPrice} />
-              <ValueDenomination formatted={topAskShares} />
-            </span>
-          </button>
+              }}
+            >
+              <span className="outcome-best-container">
+                <ValueDenomination className="emphasized" formatted={topAskPrice} />
+                <ValueDenomination formatted={topAskShares} />
+              </span>
+            </button>
           </span>
         </Link>
         <OutcomeTrade
