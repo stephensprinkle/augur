@@ -39,28 +39,16 @@ export default class Outcome extends Component {
     const nextTopAskPrice = getValue(nextProps, 'outcome.topAsk.price');
     if (currentTopBidPrice !== nextTopBidPrice) {
       const topBidPriceChange = nextTopBidPrice > currentTopBidPrice ? OUTCOME_VALUE_INCREASED : OUTCOME_VALUE_DECREASED;
-      const that = this;
-      setInterval(function () {
-        const change = Math.random() > '0.5' ? OUTCOME_VALUE_INCREASED : OUTCOME_VALUE_DECREASED;
-        that.setState({
-          topBidPriceChange: change
-        });
-      }, 1000);
+      this.setState({
+        topBidPriceChange
+      });
     }
     if (currentTopAskPrice !== nextTopAskPrice) {
       const topAskPriceChange = nextTopAskPrice > currentTopAskPrice ? OUTCOME_VALUE_INCREASED : OUTCOME_VALUE_DECREASED;
-      const that = this;
-      setInterval(function () {
-        const change = Math.random() > '0.5' ? OUTCOME_VALUE_INCREASED : OUTCOME_VALUE_DECREASED;
-        that.setState({
-          topAskPriceChange:change
-        });
-      }, 1000);
+      this.setState({
+        topAskPriceChange
+      });
     }
-  }
-
-  componentDidUpdate() {
-  //  TODO ?
   }
 
   render() {
