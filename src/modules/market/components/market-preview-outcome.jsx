@@ -23,13 +23,17 @@ export default class MarketPreviewOutcome extends Component {
     const nextPricePercent = getValue(nextProps, 'outcome.lastPricePercent');
     if (lastPricePercent !== nextPricePercent) {
       const lastPricePercentChange = lastPricePercent > nextPricePercent ? OUTCOME_VALUE_INCREASED : OUTCOME_VALUE_DECREASED;
-      // const that = this;
-      // setInterval(function () {
-      //   const change = Math.random() > '0.5' ? OUTCOME_VALUE_INCREASED : OUTCOME_VALUE_DECREASED;
-        this.setState({
-          lastPricePercentChange//: change
+      this.setState({
+        lastPricePercentChange
+      });
+      /* uncomment below to test the flashing...
+      const that = this;
+      setInterval(function () {
+        const change = Math.random() > '0.5' ? OUTCOME_VALUE_INCREASED : OUTCOME_VALUE_DECREASED;
+        that.setState({
+          lastPricePercentChange: change
         });
-      // }, 1000);
+      }, 1000);*/
     }
   }
 
