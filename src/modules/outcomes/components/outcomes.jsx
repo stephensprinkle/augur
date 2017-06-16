@@ -1,8 +1,11 @@
 import React from 'react';
 
 import Outcome from 'modules/outcomes/components/outcome';
+import NullStateMessage from 'modules/common/components/null-state-message';
 
 import { SCALAR } from 'modules/markets/constants/market-types';
+
+const nullMessage = 'No Orders Available';
 
 const Outcomes = p => (
   <article className="outcomes" >
@@ -22,7 +25,7 @@ const Outcomes = p => (
       </div>
     </div>
     <div className="market-content-scrollable" >
-      {(p.outcomes || []).map(outcome => (
+      {p.outcomes.length ? (p.outcomes || []).map(outcome => (
         <Outcome
           key={outcome.id}
           marketType={p.marketType}
@@ -40,7 +43,9 @@ const Outcomes = p => (
           maxLimitPrice={p.maxLimitPrice}
           isTradeCommitLocked={p.isTradeCommitLocked}
         />
-      ))}
+      )) :
+      <NullStateMessage message={nullMessage} />
+      }
     </div>
   </article>
 );

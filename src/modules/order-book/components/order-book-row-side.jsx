@@ -20,8 +20,7 @@ const OrderBookRowSide = (p) => {
 
   return (
     <article className={`order-book-row-side ${shouldHighlight ? 'order-book-row-side-trading' : ''}`}>
-      {!orders || !orders.length ?
-        <NullStateMessage message={nullMessage} /> :
+      {orders.length ?
         <div>
           {(p.orders || []).map((order, i) => {
             const shares = setShareDenomination(getValue(order, 'shares.formatted'), p.selectedShareDenomination);
@@ -68,7 +67,8 @@ const OrderBookRowSide = (p) => {
               </div>
             );
           })}
-        </div>
+        </div> :
+        <NullStateMessage message={nullMessage} />
       }
     </article>
   );

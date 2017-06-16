@@ -37,8 +37,7 @@ export default class MarketOpenOrders extends Component {
 
     return (
       <article className="market-open-orders">
-        {!s.hasOrders ?
-          <NullStateMessage message={s.nullMessage} /> :
+        {s.hasOrders ?
           <div>
             <div className="market-open-orders-header">
               <span>{!p.marketType === SCALAR ? 'Outcomes' : 'Outcome'}</span>
@@ -65,7 +64,8 @@ export default class MarketOpenOrders extends Component {
                 );
               })}
             </div>
-          </div>
+          </div> :
+          <NullStateMessage message={s.nullMessage} />
         }
       </article>
     );

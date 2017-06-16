@@ -13,8 +13,7 @@ const MarketPositions = (p) => {
 
   return (
     <article className="market-positions">
-      {!outcomePositions || !outcomePositions.length ?
-        <NullStateMessage message={nullMessage} /> :
+      {outcomePositions.length ?
         <div>
           <div className="market-positions-header">
             <span>{!p.marketType === SCALAR ? 'Outcomes' : 'Outcome'}</span>
@@ -38,7 +37,8 @@ const MarketPositions = (p) => {
               />
             )}
           </div>
-        </div>
+        </div> :
+        <NullStateMessage message={nullMessage} />
       }
     </article>
   );
