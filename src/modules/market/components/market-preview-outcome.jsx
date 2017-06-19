@@ -26,14 +26,6 @@ export default class MarketPreviewOutcome extends Component {
       this.setState({
         lastPricePercentChange
       });
-      /* uncomment below to test the flashing...
-      const that = this;
-      setInterval(function () {
-        const change = Math.random() > '0.5' ? OUTCOME_VALUE_INCREASED : OUTCOME_VALUE_DECREASED;
-        that.setState({
-          lastPricePercentChange: change
-        });
-      }, 1000);*/
     }
   }
 
