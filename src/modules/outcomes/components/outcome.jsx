@@ -28,9 +28,6 @@ export default class Outcome extends Component {
 
   }
 
-  componentDidMount() {
-  }
-
   componentWillUpdate(nextProps, nextState) {
     const p = this.props;
     const currentTopBidPrice = getValue(p, 'outcome.topBid.price');
