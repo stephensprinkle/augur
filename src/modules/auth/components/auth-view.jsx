@@ -87,11 +87,11 @@ export default class AuthView extends Component {
           {s.selectedNav === AUTH_LOGIN &&
             <div className="default-auth">
               <button
-                className="auth-airbitz unstyled"
+                className="auth-ledger unstyled"
                 onClick={p.authAirbitz.airbitzLoginLink.onClick}
               >
                 <div>
-                  <AirbitzLogoIcon />
+                  <LedgerLogoIcon />
                   <span>
                     Login with Ledger
                   </span>
