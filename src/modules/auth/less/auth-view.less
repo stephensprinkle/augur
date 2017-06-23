@@ -97,6 +97,31 @@
       }
     }
 
+    .auth-uport {
+      align-self: center;
+      background-color: #0079ff;  // TODO determine correct color that jives better with Airbitz
+      border-radius: 4px;
+      color: @color-text-light;
+      cursor: pointer;
+      margin: 1.4em 0 1em;
+
+      div {
+        align-items: center;
+        display: flex;
+
+        .uport-logo-icon {
+          .border(true, @border-right, @color-gray);
+
+          height: @font-size-large;
+          padding: 0.6em;
+        }
+
+        span {
+          padding: 0 1.2em;
+        }
+      }
+    }
+
     .auth-login-id {
       .auth-login-id-method-selection {
         display: flex;
