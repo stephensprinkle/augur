@@ -4,6 +4,7 @@ import AuthLogin from 'modules/auth/components/auth-login';
 import AuthSignup from 'modules/auth/components/auth-signup';
 import AuthImport from 'modules/auth/components/auth-import';
 import AirbitzLogoIcon from 'modules/common/components/airbitz-logo-icon';
+import LedgerLogoIcon from 'modules/common/components/ledger-logo-icon';
 
 import ComponentNav from 'modules/common/components/component-nav';
 
