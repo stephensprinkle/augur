@@ -20,7 +20,6 @@ describe(`modules/auth/actions/load-account-data.js`, () => {
         }
       };
       const DisplayTopicsPage = {};
-      const FundNewAccount = { fundNewAccount: () => {} };
       const LoadAccountDataFromLocalStorage = {};
       const LoadRegisterBlockNumber = {};
       const UpdateAssets = { updateAssets: () => {} };
@@ -28,7 +27,6 @@ describe(`modules/auth/actions/load-account-data.js`, () => {
       const action = proxyquire('../../../src/modules/auth/actions/load-account-data.js', {
         '../../../services/augurjs': AugurJS,
         '../../link/actions/display-topics-page': DisplayTopicsPage,
-        './fund-new-account': FundNewAccount,
         './load-account-data-from-local-storage': LoadAccountDataFromLocalStorage,
         './load-register-block-number': LoadRegisterBlockNumber,
         './update-assets': UpdateAssets,
@@ -42,9 +40,6 @@ describe(`modules/auth/actions/load-account-data.js`, () => {
       sinon.stub(AugurJS.augur, 'getRegisterBlockNumber', (address, callback) => {
         if (!callback) return t.blockchain.registerBlockNumber;
         callback(null, t.blockchain.registerBlockNumber);
-      });
-      sinon.stub(FundNewAccount, 'fundNewAccount', () => (dispatch, getState) => {
-        dispatch({ type: 'FUND_NEW_ACCOUNT' });
       });
       LoadAccountDataFromLocalStorage.loadAccountDataFromLocalStorage = sinon.stub().returns({ type: 'LOAD_ACCOUNT_DATA_FROM_LOCAL_STORAGE' });
       LoadRegisterBlockNumber.loadRegisterBlockNumber = sinon.stub().returns({ type: 'LOAD_REGISTER_BLOCK_NUMBER' });
@@ -130,7 +125,7 @@ describe(`modules/auth/actions/load-account-data.js`, () => {
       }, {
         type: 'UPDATE_ASSETS'
       }, {
-        type: 'FUND_NEW_ACCOUNT'
+        type: 'LOAD_REGISTER_BLOCK_NUMBER'
       }]);
     }
   });
@@ -155,7 +150,7 @@ describe(`modules/auth/actions/load-account-data.js`, () => {
       }, {
         type: 'UPDATE_ASSETS'
       }, {
-        type: 'FUND_NEW_ACCOUNT'
+        type: 'LOAD_REGISTER_BLOCK_NUMBER'
       }]);
     }
   });

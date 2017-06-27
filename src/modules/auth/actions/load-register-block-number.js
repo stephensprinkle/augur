@@ -9,6 +9,7 @@ export const loadRegisterBlockNumber = () => (dispatch, getState) => {
     augur.accounts.getRegisterBlockNumber({ account: loginAccount.address }, (err, blockNumber) => {
       if (err) return console.error(err);
       if (!blockNumber) {
+        // TODO register on first transaction, not on initial login
         augur.api.Register.register({
           _signer: loginAccount.privateKey,
           onSent: augur.utils.noop,

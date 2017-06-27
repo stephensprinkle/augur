@@ -1,5 +1,4 @@
-import { anyAccountBalancesZero } from 'modules/auth/selectors/balances';
-import { fundNewAccount } from 'modules/auth/actions/fund-new-account';
+// import { anyAccountBalancesZero } from 'modules/auth/selectors/balances';
 import { loadAccountDataFromLocalStorage } from 'modules/auth/actions/load-account-data-from-local-storage';
 import { loadRegisterBlockNumber } from 'modules/auth/actions/load-register-block-number';
 import { updateAssets } from 'modules/auth/actions/update-assets';
@@ -13,10 +12,6 @@ export const loadAccountData = (account, redirect) => (dispatch, getState) => {
   dispatch(displayTopicsPage(redirect));
   dispatch(updateAssets((err, balances) => {
     if (err) return console.error(err);
-    if (anyAccountBalancesZero(balances)) {
-      dispatch(fundNewAccount());
-    } else {
-      dispatch(loadRegisterBlockNumber());
-    }
+    dispatch(loadRegisterBlockNumber());
   }));
 };

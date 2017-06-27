@@ -336,17 +336,6 @@ export const constructRelayTransaction = (tx, status) => (dispatch, getState) =>
           transaction = dispatch(constructTransaction('depositEther', { ...p, ...tx }));
           break;
         }
-        case 'fundNewAccount': {
-          notification = {
-            id: p.transactionHash,
-            title: `Fund Account Request - ${tx.status}`,
-            description: 'Requesting testnet ETH, ETH Tokens, and REP',
-            timestamp: p.timestamp,
-            href: transactionsHref
-          };
-          transaction = dispatch(constructTransaction('fundedAccount', p));
-          break;
-        }
         case 'slashRep':
           if (tx.data.from === loginAccount.address) {
             notification = {
