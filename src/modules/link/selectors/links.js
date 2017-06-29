@@ -1,4 +1,4 @@
-// NOTE --  I'm working on a way to refine the site view component linking to be more elegant that what we currently have below.
+// NOTE --  I'm working on a way to refine the site view component linking to be more elegant than what we currently have below.
 //          Planning to do a rework during CH #2478, since pagination will be getting slightly reworked for markets at that point,
 //          leaving an opportune time to take a deeper look at these as well.
 //          Largest motivation being the relatively recent implementation of react-redux, which in large part removes the necessity for these.
@@ -6,10 +6,12 @@
 //          of the link selectors, which generally should just be to handle routing to the next view.
 
 import memoize from 'memoizee';
+import { Connect, SimpleSigner } from 'uport-connect'
 
 import store from 'src/store';
 
 import { loginWithAirbitz } from 'modules/auth/actions/login-with-airbitz';
+import { loginWithUPort } from 'modules/auth/actions/login-with-uport';
 
 import { updateURL } from 'modules/link/actions/update-url';
 import { logout } from 'modules/auth/actions/logout';
@@ -18,6 +20,7 @@ import { loadFullLoginAccountMarkets } from 'modules/portfolio/actions/load-full
 import { updateSelectedMarketsHeader } from 'modules/markets/actions/update-selected-markets-header';
 
 import selectABCUIContext from 'modules/auth/helpers/abc';
+import selectUPortContext from 'modules/auth/helpers/uport';
 
 import {
   ACCOUNT,
@@ -122,6 +125,24 @@ export const selectAirbitzOnLoad = memoize(dispatch => ({
         }
       });
     }
+  }
+}), { max: 1 });
+
+export const selectUPortLink = memoize((authType, dispatch) => ({
+  onClick: () => {
+    console.log(`clicked uPort`);
+  }
+}), { max: 1 });
+
+export const selectUPortOnLoad = memoize((authType, dispatch) => ({
+  onLoad: () => {
+    console.log(`Loading uPort`);
+    // const uport = new Connect({
+    //     appName: 'Augur Test App',
+    //     clientId: '0x072523d0ab2724104f645a38590bab0e080430e2',
+    //     signer: SimpleSigner(process.env.uportPrivateKey)
+    //   }
+    // );
   }
 }), { max: 1 });
 

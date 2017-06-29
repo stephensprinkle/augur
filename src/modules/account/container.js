@@ -8,6 +8,7 @@ import links from 'modules/link/selectors/links';
 
 import { selectLoginAccount } from 'modules/auth/selectors/login-account';
 import selectABCUIContext from 'modules/auth/helpers/abc';
+import selectUPortContext from 'modules/auth/helpers/uport';
 
 const mapStateToProps = state => ({
   loginAccount: selectLoginAccount(state),

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component, PropTypes } from 'react';
 
 import AuthLogin from 'modules/auth/components/auth-login';
 import AuthSignup from 'modules/auth/components/auth-signup';
 import AuthImport from 'modules/auth/components/auth-import';
 import AirbitzLogoIcon from 'modules/common/components/airbitz-logo-icon';
+import UPortLogoIcon from 'modules/common/components/uport-logo-icon';
 
 import ComponentNav from 'modules/common/components/component-nav';
 
@@ -18,7 +18,9 @@ export default class AuthView extends Component {
     submitLogin: PropTypes.func.isRequired,
     importAccount: PropTypes.func.isRequired,
     airbitzLoginLink: PropTypes.object.isRequired,
-    airbitzOnLoad: PropTypes.object.isRequired
+    airbitzOnLoad: PropTypes.object.isRequired,
+    uportLoginLink: PropTypes.object.isRequired,
+    uportOnLoad: PropTypes.object.isRequired
   }
 
   constructor(props) {
@@ -37,6 +39,7 @@ export default class AuthView extends Component {
 
   componentDidMount() {
     this.props.airbitzOnLoad.onLoad();
+    this.props.uportOnLoad.onLoad();
   }
 
   updateSelectedNav(selectedNav) {
@@ -84,7 +87,19 @@ export default class AuthView extends Component {
                   <AirbitzLogoIcon />
                   <span>
                     {s.selectedNav === AUTH_SIGNUP ? 'Signup' : 'Login'} with Airbitz
-                  </span>
+                    </span>
+                </div>
+              </button>
+              <h4>or</h4>
+              <button
+                className="auth-uport unstyled"
+                // onClick={p.uportLoginLink.onClick}
+              >
+                <div>
+                  <UPortLogoIcon />
+                  <span>
+              {s.selectedNav === AUTH_SIGNUP ? 'Signup' : 'Login'} with uPort
+              </span>
                 </div>
               </button>
               <h4>or</h4>
