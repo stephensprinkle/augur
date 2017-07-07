@@ -5,6 +5,7 @@ import AuthLogin from 'modules/auth/components/auth-login';
 import AuthSignup from 'modules/auth/components/auth-signup';
 import AuthImport from 'modules/auth/components/auth-import';
 import AirbitzLogoIcon from 'modules/common/components/airbitz-logo-icon';
+import AuthOnboard from 'modules/auth/components/auth-onboard';
 
 import ComponentNav from 'modules/common/components/component-nav';
 
@@ -67,48 +68,50 @@ export default class AuthView extends Component {
 
     return (
       <section id="auth_view">
-        <article className="auth-methods">
-          <ComponentNav
-            fullWidth
-            navItems={p.authNavItems}
-            selectedNav={s.selectedNav}
-            updateSelectedNav={this.updateSelectedNav}
-          />
-          {s.selectedNav !== AUTH_IMPORT &&
-            <div className="default-auth">
-              <button
-                className="auth-airbitz unstyled"
-                onClick={p.airbitzLoginLink.onClick}
-              >
-                <div>
-                  <AirbitzLogoIcon />
-                  <span>
-                    {s.selectedNav === AUTH_SIGNUP ? 'Signup' : 'Login'} with Airbitz
-                  </span>
-                </div>
-              </button>
-              <h4>or</h4>
-            </div>
-          }
-          {s.selectedNav === AUTH_SIGNUP &&
-            <AuthSignup
-              register={p.register}
-              setupAndFundNewAccount={p.setupAndFundNewAccount}
-            />
-          }
-          {s.selectedNav === AUTH_LOGIN &&
-            <AuthLogin
-              submitLogin={p.submitLogin}
-              airbitzLogin={p.airbitzLogin}
-            />
-          }
-          {s.selectedNav === AUTH_IMPORT &&
-            <AuthImport
-              importAccountFromFile={p.importAccountFromFile}
-            />
-          }
-        </article>
+        <AuthOnboard />
       </section>
     );
   }
 }
+
+// <article className="auth-methods">
+//   <ComponentNav
+//     fullWidth
+//     navItems={p.authNavItems}
+//     selectedNav={s.selectedNav}
+//     updateSelectedNav={this.updateSelectedNav}
+//   />
+//   {s.selectedNav !== AUTH_IMPORT &&
+//     <div className="default-auth">
+//       <button
+//         className="auth-airbitz unstyled"
+//         onClick={p.airbitzLoginLink.onClick}
+//       >
+//         <div>
+//           <AirbitzLogoIcon />
+//           <span>
+//             {s.selectedNav === AUTH_SIGNUP ? 'Signup' : 'Login'} with Airbitz
+//           </span>
+//         </div>
+//       </button>
+//       <h4>or</h4>
+//     </div>
+//   }
+//   {s.selectedNav === AUTH_SIGNUP &&
+//     <AuthSignup
+//       register={p.register}
+//       setupAndFundNewAccount={p.setupAndFundNewAccount}
+//     />
+//   }
+//   {s.selectedNav === AUTH_LOGIN &&
+//     <AuthLogin
+//       submitLogin={p.submitLogin}
+//       airbitzLogin={p.airbitzLogin}
+//     />
+//   }
+//   {s.selectedNav === AUTH_IMPORT &&
+//     <AuthImport
+//       importAccountFromFile={p.importAccountFromFile}
+//     />
+//   }
+// </article>
