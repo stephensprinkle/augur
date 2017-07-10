@@ -1,38 +1,60 @@
-.auth-onboard {
+@color-augur: #231a3a;
+@color-augur-text: #412468;
 
+.auth-onboard {
   display: flex;
   flex-flow: column nowrap;
+  width: 720px;
 
   h1 {
+    font-size: 2.5em;
+    letter-spacing: 2px;
+    text-align: center;
     text-transform: uppercase;
   }
 }
 
 .auth-onboard-actions {
+  align-content: space-between;
   display: flex;
   flex-flow: row wrap;
-  align-content: space-between;
+  margin-top: 10em;
 
-  button {
-    flex: 0 0 38%;
-    margin-left: 0;
+  div {
+    align-content: space-between;
+    display: flex;
+    flex: 0 1 40%;
+    flex-flow: column nowrap;
     margin-right: auto;
+
+    button {
+      background-color: @color-gray;
+      border-radius: 3px;
+      color: @color-augur-text;
+      letter-spacing: 1px;
+      padding: 2em 2.5em;
+      text-transform: uppercase;
+    }
+
+    button:hover {
+      background-color: @color-white;
+    }
+
+    button:hover + span {
+      display: block;
+    }
+
+    span {
+      align-self: center;
+      background-color: @color-augur;
+      border-radius: 3px;
+      color: @color-white;
+      display: none;
+      padding: 0.5em 0.25em;
+    }
   }
 
-  button:last-of-type {
-    flex: 0 0 38%;
-    margin-left: auto;
-    margin-right: 0;
-  }
-
-  span {
-    flex: 0 0 40%;
-    margin-left: 0;
-    margin-right: auto;
-  }
-
-  span:last-of-type {
-    flex: 0 0 35%;
+  div:last-of-type {
     margin-left: auto;
     margin-right: 0;
   }
