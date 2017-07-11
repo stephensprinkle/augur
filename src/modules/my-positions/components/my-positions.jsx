@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import ComponentNav from 'modules/common/components/component-nav';
-import ValueDenomination from 'modules/common/components/value-denomination';
 import NullStateMessage from 'modules/common/components/null-state-message';
-
-import MyPosition from 'modules/my-positions/components/my-position';
-import MyPositionsFilter from 'modules/my-positions/components/my-positions-filter';
-import MyPositionsMarket from 'modules/my-positions/components/my-positions-market';
-import TransactionsLoadingActions from 'modules/transactions/components/transactions-loading-actions';
-
-
+import { SELECT_TYPE_OPTIONS } from 'modules/markets/constants/filter-sort';
 import { POSITIONS_POSITIONS, POSITIONS_ORDERS } from 'modules/my-positions/constants/internal-views';
 
-import getValue from 'utils/get-value';
+import MyPosition from 'modules/my-positions/components/my-position';
+import MyPositionsFilterSort from 'modules/my-positions/components/my-positions-filter-sort';
+import MyPositionsMarket from 'modules/my-positions/components/my-positions-market';
+import TransactionsLoadingActions from 'modules/transactions/components/transactions-loading-actions';
+import ComponentNav from 'modules/common/components/component-nav';
+import ValueDenomination from 'modules/common/components/value-denomination';
+
 
 export default class MyPositions extends Component {
   static propTypes = {
@@ -36,11 +34,14 @@ export default class MyPositions extends Component {
       }
     };
 
+    this.defaultNullMessage = 'No Positions Held';
+    this.typeOptions = SELECT_TYPE_OPTIONS;
+
     this.state = {
       keywords: '',
-      nullStateMessage: 'No Positions Held',
       filteredMarkets: props.markets || [],
-      selectedNav: POSITIONS_POSITIONS,
+      nullStateMessage: this.defaultNullMessage,
+      selectedNav: POSITIONS_POSITIONS
     };
 
     this.filterMyPositions = this.filterMyPositions.bind(this);
@@ -56,7 +57,6 @@ export default class MyPositions extends Component {
   }
 
   updateKeywordsState(keywords) {
-    console.log(`Updating keywords state`);
     this.setState({ keywords });
   }
 
@@ -68,15 +68,9 @@ export default class MyPositions extends Component {
       filteredMarkets = (markets || []).filter(market => market.description.toLowerCase().indexOf(s.keywords.toLowerCase()) >= 0);
     }
 
-    if (!filteredMarkets.length) {
-      this.setState({
-        nullStateMessage: "No Positions Match Your Search"
-      });
-    } else {
-      this.setState({
-        nullStateMessage: 'No Positions Held'
-      });
-    }
+    this.setState({
+      nullStateMessage: filteredMarkets.length ? "No Positions Match Your Search" : this.defaultNullMessage
+    });
 
     if (filteredMarkets !== s.filteredMarkets) {
       this.setState({
@@ -92,11 +86,13 @@ export default class MyPositions extends Component {
     return (
       <article className="my-positions">
         <div className="view-header">
-          <MyPositionsFilter
-            updateKeywords={this.updateKeywordsState.bind(this)}
-
-          />
-          <div className="view-header-group" />
+          <div className="view-header-group">
+            <MyPositionsFilterSort
+              updateKeywords={this.updateKeywordsState.bind(this)}
+              types={this.typeOptions}
+              // selectedFilterSort={}
+            />
+          </div>
           <div className="view-header-group">
             <TransactionsLoadingActions
               loadMoreTransactions={p.loadMoreTransactions}
@@ -106,7 +102,7 @@ export default class MyPositions extends Component {
             />
           </div>
         </div>
-        {s.filteredMarkets.length > 0 ?
+        {s.filteredMyMarkets && s.filteredMarkets.length ?
           s.filteredMarkets.map(market => (
             <MyPositionsMarket
               key={market.id}

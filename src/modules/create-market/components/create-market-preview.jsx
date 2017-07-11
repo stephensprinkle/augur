@@ -108,6 +108,7 @@ export default class CreateMarketPreview extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.shouldUpdateHeight && prevState.shouldUpdateHeight !== this.state.shouldUpdateHeight) {
+      console.log(`${updated}`);
       this.updatePreviewHeight(this.props.newMarket.currentStep);
       this.updateChart();
       this.shouldUpdateHeight(false);
@@ -181,6 +182,7 @@ export default class CreateMarketPreview extends Component {
   }
 
   render() {
+
     const p = this.props;
     const s = this.state;
     const newMarket = this.props.newMarket;

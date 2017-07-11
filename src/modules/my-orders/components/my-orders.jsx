@@ -18,7 +18,6 @@ const MyOrders = p => (
     </div>
     {(p.outcomes || []).map((outcome, index) => {
       const lastPricePercent = getValue(outcome, 'lastPricePercent.rounded');
-
       return (
         <MarketOpenOrdersGroup
           key={outcome.name}
