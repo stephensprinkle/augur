@@ -53,7 +53,11 @@ export default class Uport extends Component {
 
   setQRSize() {
     const width = getValue(this, 'qrWrapper.clientWidth')
-    if (width) this.setState({ qrSize: this.props.isMobile ? width / 1.2 : width / 2 })
+    const height = getValue(this, 'qrWrapper.clientHeight')
+
+    this.setState({
+      qrSize: width > height ? height * 0.8 : width * 0.8
+    })
   }
 
   render() {
