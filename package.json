@@ -31,7 +31,7 @@
     "bignumber.js": "4.0.2",
     "bs58": "4.0.1",
     "classnames": "2.2.5",
-    "clipboard": "^1.7.1",
+    "clipboard": "1.7.1",
     "core-js": "2.4.1",
     "express": "4.15.3",
     "hammerjs": "2.0.8",
@@ -67,6 +67,7 @@
     "secure-random": "1.1.1",
     "shelljs": "0.7.8",
     "shifty": "2.1.0",
+    "uport-connect": "0.6.6",
     "zxcvbn": "4.4.2"
   },
   "devDependencies": {
