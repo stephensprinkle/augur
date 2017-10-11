@@ -1,10 +1,16 @@
 # Officially Supported Browsers
 # NOTE -- referenced by `autoprefixer` during build
 
+# Desktop
 last 2 Chrome versions
 last 2 Firefox versions
 last 1 Safari versions
 last 1 Edge versions
-last 2 iOS versions
+
+# Mobile
+## iOS
+last 1 iOS versions
+
+## Android
 last 2 Android versions
 last 2 ChromeAndroid versions
