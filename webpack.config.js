@@ -82,7 +82,7 @@ let config = {
       {
         test: /\.jsx?/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel'
       },
       {
         test: /\.json/,
