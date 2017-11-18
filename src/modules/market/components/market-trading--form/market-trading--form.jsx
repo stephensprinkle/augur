@@ -99,6 +99,7 @@ class MarketTradingForm extends Component {
               step={10**-PRECISION}
               placeholder="0.0000 ETH"
               value={p.orderPrice instanceof BigNumber ? p.orderPrice.toNumber() : p.orderPrice}
+              onBlur={e => p.snapToStep('orderPrice', e.target.value)}
               onChange={e => p.validateForm('orderPrice', e.target.value)}
             />
           </li>

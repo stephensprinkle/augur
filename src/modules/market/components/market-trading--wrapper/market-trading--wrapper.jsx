@@ -14,6 +14,7 @@ import ValueDenomination from 'modules/common/components/value-denomination/valu
 import getValue from 'utils/get-value'
 
 import { BUY, SELL, LIMIT } from 'modules/transactions/constants/types'
+import { SCALAR } from 'modules/markets/constants/market-types'
 import { ACCOUNT_DEPOSIT } from 'modules/routes/constants/views'
 
 import Styles from 'modules/market/components/market-trading--wrapper/market-trading--wrapper.styles'
@@ -53,6 +54,7 @@ class MarketTradingWrapper extends Component {
     this.nextPage = this.nextPage.bind(this)
     this.updateState = this.updateState.bind(this)
     this.validateForm = this.validateForm.bind(this)
+    this.snapToStep = this.snapToStep.bind(this)
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -77,6 +79,26 @@ class MarketTradingWrapper extends Component {
 
   updateState(property, value) {
     this.setState({ [property]: value })
+  }
+
+  snapToStep(property, rawValue) {
+    let value = new BigNumber(rawValue)
+
+    // snap value to step size for scalar markets
+    if (this.props.market.marketType === SCALAR) {
+      const numTicks = new BigNumber(this.props.market.numTicks)
+      const maxLimitPrice = new BigNumber(this.props.market.maxLimitPrice.value)
+      const minLimitPrice = new BigNumber(this.props.market.minLimitPrice.value)
+      const stepSize = maxLimitPrice.minus(minLimitPrice).dividedBy(numTicks)
+      // const stepSize = (maxLimitPrice - minLimitPrice) / numTicks
+
+      value = value.minus(minLimitPrice).dividedBy(stepSize).round().times(stepSize).plus(minLimitPrice)
+
+      console.log(numTicks.toNumber(), stepSize.toNumber(), value.toNumber())
+      // value = Math.round((value - minLimitPrice) / stepSize) * stepSize + minLimitPrice
+    }
+
+    this.validateForm(property, value)
   }
 
   validateForm(property, rawValue) { // needs actual validation
@@ -139,6 +161,7 @@ class MarketTradingWrapper extends Component {
                 nextPage={this.nextPage}
                 updateState={this.updateState}
                 validateForm={this.validateForm}
+                snapToStep={this.snapToStep}
                 isMobile={p.isMobile}
                 errors={s.errors}
               />

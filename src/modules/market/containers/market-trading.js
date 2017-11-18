@@ -17,7 +17,16 @@ const MarketTradingContainer = withRouter(connect(mapStateToProps)(MarketTrading
 export default MarketTradingContainer
 
 const market = {
-  marketType: 'categorical',
+  marketType: 'scalar',
+  numTicks: 10752,
+  maxLimitPrice: {
+    formatted: '100',
+    value: 7000,
+  },
+  minLimitPrice: {
+    formatted: '0',
+    value: 1000,
+  },
   tradeSummary: {
     hasUserEnoughFunds: true,
   },
